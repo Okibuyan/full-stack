@@ -11,16 +11,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.get("/products", (request, response) => {
-//   fs.readFile("./data/products.json", "utf-8", (readError, data) => {
-//     if (readError) {
-//       response.json({ success: false, error: error });
-//     }
-//     let dbData = data ? JSON.parse(data) : [];
+app.get("/products", (request, response) => {
+  fs.readFile("./data/products.json", "utf-8", (readError, data) => {
+    if (readError) {
+      response.json({ success: false, error: error });
+    }
 
-//     response.json({ success: true, products: dbData });
-//   });
-// });
+    let dbData = data ? JSON.parse(data) : [];
+
+    response.json({
+      success: true,
+      products: dbData,
+    });
+  });
+});
 
 app.post("/product", (request, response) => {
   const { productName, category, price } = request.body;
