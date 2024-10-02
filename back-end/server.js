@@ -74,7 +74,7 @@ app.delete("/product", (request, response) => {
     if (filteredData.length === dbData.length) {
       response.json({
         success: false,
-        error: "Product id not found",
+        error: "Product id no found",
       });
     }
 
